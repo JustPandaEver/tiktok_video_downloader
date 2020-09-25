@@ -21,9 +21,11 @@ const getMetaData=async (req,res,next)=>{
 		next(e)
 	}
 }
-const getId=(req, res, next)=>{
+const getId=async(req, res, next)=>{
     try{
-        const fecth=`https://tiktok.codespikex.com/api/v1/fetch?url=${req.newUrl}`
+
+   
+        const fecth=`https://tiktok.codespikex.com/api/v1/fetch?url=${req.newUrl}?lang=en`
 
         request({url:fecth,headers: {
             'TOKEN': '715f22af-c70b-4850-9598-d27aa625f835'
@@ -34,7 +36,9 @@ const getId=(req, res, next)=>{
             }else if(body.error){
                 throw new Error('no result found')
             }else{
+               
                 req.video_id=body.video_id
+
             }
             next();
         })
@@ -45,21 +49,24 @@ const getId=(req, res, next)=>{
 	
 	
 }
-const getVideo=(req, res,next)=>{
-	const fecth=`https://tiktok.codespikex.com/api/v1/fetch-videos/${req.video_id}`
-
-    request({url:fecth,headers: {
-        'TOKEN': '715f22af-c70b-4850-9598-d27aa625f835'
-    },json : true },(error,res,body)=>{ 
-        if(error){
-            throw new Error('not connected')
-        }else if(body.error){
-			throw new Error('no result found')
-        }else{
+const getVideo= async(req, res,next)=>{
+    try{
+        const fecth='https://tiktok.codespikex.com/api/v1/fetch-videos/'+req.video_id+'?lang=en'
+        request.post({url:fecth,headers: {
+            'TOKEN': '715f22af-c70b-4850-9598-d27aa625f835'
+        },json : true },(error,res,body)=>{ 
+            if(error){
+                throw new Error('not connected')
+            }else if(body.error){
+                throw new Error('no result found')
+            }else{
+                
+            }
             next();
-		}
- 
-	})
+        })
+    }catch(e){
+        next(e);
+    }
 	
 }
 const finalCallBack=function (req, res) {
