@@ -73,7 +73,7 @@ const finalCallBack=function (req, res) {
 	try{
 				
         const url=`https://tiktok.codespikex.com/download?id=${req.video_id}&type=video&nwm=true`;
-        res.redirect(url);
+        res.send(url);
 		
 	}catch(e){
 		next(e)
