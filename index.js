@@ -28,7 +28,7 @@ const getId=async(req, res, next)=>{
         const fecth=`https://tiktok.codespikex.com/api/v1/fetch?url=${req.newUrl}?lang=en`
 
         request({url:fecth,headers: {
-            'TOKEN': '715f22af-c70b-4850-9598-d27aa625f835'
+            'TOKEN': 'fbeb9958-a83c-451b-a43b-10c868c01eca'
         },json : true 
         },(error,res,body)=>{ 
             if(error){
@@ -53,7 +53,7 @@ const getVideo= async(req, res,next)=>{
     try{
         const fecth='https://tiktok.codespikex.com/api/v1/fetch-videos/'+req.video_id+'?lang=en'
         request.post({url:fecth,headers: {
-            'TOKEN': '715f22af-c70b-4850-9598-d27aa625f835'
+            'TOKEN': 'fbeb9958-a83c-451b-a43b-10c868c01eca'
         },json : true },(error,res,body)=>{ 
             if(error){
                 throw new Error('not connected')
